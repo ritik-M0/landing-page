@@ -99,6 +99,7 @@ function ProcessAccordion() {
 
 export default function Component() {
   const navigate = useNavigate();
+  const [menuOpen, setMenuOpen] = useState(false);
   return (
     <div className="min-h-screen bg-[#1D1D1D] text-[#F2F2F2] w-full">
       {/* Hero Section */}
@@ -123,8 +124,66 @@ export default function Component() {
               Contact Us
             </Button>
             <span className="text-[#F2F2F2] font-medium">Menu</span>
-            <Menu className="w-6 h-6 text-[#A1F480]" />
+            <Menu className="w-6 h-6 text-[#A1F480] cursor-pointer" onClick={() => setMenuOpen(true)} />
           </div>
+      {/* Menu Overlay */}
+      {menuOpen && (
+        <div className="fixed inset-0 z-50 bg-[#1D1D1D] flex flex-col">
+          <div className="flex justify-between items-start p-8">
+            <img src="/fission-logo.svg" alt="Fission Logo" className="w-12 h-12" />
+            <button
+              className="flex items-center gap-2 text-[#F2F2F2] text-sm"
+              onClick={() => setMenuOpen(false)}
+            >
+              Close <span className="text-[#A1F480] text-2xl ml-2">&times;</span>
+            </button>
+          </div>
+          <nav className="flex-1 flex flex-col items-center justify-center gap-4">
+            <button
+              onClick={() => { navigate('/'); setMenuOpen(false); }}
+              className="text-4xl md:text-5xl font-extrabold text-white underline decoration-[#A1F480] decoration-4 underline-offset-4 bg-transparent border-none outline-none cursor-pointer"
+            >
+              HOME
+            </button>
+            <button
+              onClick={() => { navigate('/about'); setMenuOpen(false); }}
+              className="text-4xl md:text-5xl font-extrabold text-white bg-transparent border-none outline-none cursor-pointer"
+            >
+              ABOUT
+            </button>
+            <button
+              onClick={() => { navigate('/services'); setMenuOpen(false); }}
+              className="text-4xl md:text-5xl font-extrabold text-white bg-transparent border-none outline-none cursor-pointer"
+            >
+              SERVICES
+            </button>
+            <button
+              onClick={() => { navigate('/case-study'); setMenuOpen(false); }}
+              className="text-4xl md:text-5xl font-extrabold text-white bg-transparent border-none outline-none cursor-pointer"
+            >
+              CASE STUDIES
+            </button>
+            <button
+              onClick={() => { navigate('/testimonials'); setMenuOpen(false); }}
+              className="text-4xl md:text-5xl font-extrabold text-white bg-transparent border-none outline-none cursor-pointer"
+            >
+              TESTIMONIALS
+            </button>
+            <button
+              onClick={() => { navigate('/team'); setMenuOpen(false); }}
+              className="text-4xl md:text-5xl font-extrabold text-white bg-transparent border-none outline-none cursor-pointer"
+            >
+              OUR TEAM
+            </button>
+            <button
+              onClick={() => { navigate('/contact-us'); setMenuOpen(false); }}
+              className="text-4xl md:text-5xl font-extrabold text-white bg-transparent border-none outline-none cursor-pointer"
+            >
+              CONTACT
+            </button>
+          </nav>
+        </div>
+      )}
         </header>
 
         {/* Dots backgrounds below header, spanning main content */}
